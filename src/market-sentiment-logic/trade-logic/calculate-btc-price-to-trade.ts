@@ -9,14 +9,16 @@ export function calculatePriceAmountToTrade(midPrice: number, operation: TradeSi
   let adjustedPrice5 = Number(midPrice.toPrecision(5));
 
   if (operation === TradeSignal.BUY) {
-    adjustedPrice5 = Number(midPrice.toPrecision(5)) - 10; // Buy at a lower price
+    adjustedPrice5 = Number(midPrice.toPrecision(5)) -
+      Number(process.env.BUY_PRICE_LIMIT_ORDER_MARGIN); // Buy at a lower price
   }
 
   if (operation === TradeSignal.SELL) {
-    adjustedPrice5 = Number(midPrice.toPrecision(5)) + 5; // Sell at a higher price
+    adjustedPrice5 = Number(midPrice.toPrecision(5)) +
+      Number(process.env.SELL_PRICE_LIMIT_ORDER_MARGIN); // Sell at a higher price
   }
 
-  // TODO: check if 10 is a good value to add or subtract and not blocking the trade
+  // TODO: optimize the above values
 
   return adjustedPrice5;
 }

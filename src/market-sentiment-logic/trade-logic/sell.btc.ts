@@ -13,7 +13,7 @@ export async function sell(
 ): Promise<void> {
   const btcAmount = await calculateBtcAmountToSell();
   if (btcAmount <= 0.001) {
-    logger.warning('No BTC is to seel. Available:', btcAmount);
+    logger.warning('No BTC to sell. Available:', btcAmount);
     return
   }
 
