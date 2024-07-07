@@ -1,0 +1,25 @@
+{
+  "name": "bot-node-2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node src/app.ts",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "bitvavo": "^1.4.1",
+    "chalk": "^5.3.0",
+    "colors": "^1.4.0",
+    "dotenv": "^16.4.5"
+  }
+}
