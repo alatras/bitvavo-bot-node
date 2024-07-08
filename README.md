@@ -8,7 +8,7 @@
 - It concludes signals based on the above two keys. Generally: if `market sentiment` is above a certain threshold (e.g. 60%), buy. If not, sell.
 
 ## How to run
-- Create an `.env` out of `.env.example`
+- Create an `.env` out of `.env.example` (read the later for reference and info about logic).
 - API key and secret are a must in `.env`
 - Edit the other variables to suit the range and the thresholds you want.
 - Run:
