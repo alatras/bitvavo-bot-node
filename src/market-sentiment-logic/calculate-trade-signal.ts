@@ -11,10 +11,8 @@ export enum TradeSignal {
  */
 export const calculateTradeSignal = (
   sentiment: SentimentResult,
-): TradeSignal => {
-  const SENTIMENT_THRESHOLD = process.env.SENTIMENT_THRESHOLD; // TODO: test and adjust this threshold
-  
-  if (sentiment.marketSentiment > Number(SENTIMENT_THRESHOLD)) {
+): TradeSignal => {  
+  if (sentiment.marketSentiment > Number(process.env.SENTIMENT_THRESHOLD)) {
     return TradeSignal.BUY;
   }
   return TradeSignal.SELL;

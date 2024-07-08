@@ -65,7 +65,7 @@ export function calculateVisibleVolume(book: Book, depthPercentage: number = 0.0
   const bidVolume = calculateCumulativeVolume(sortedBids, price => price >= lowPrice);
   const askVolume = calculateCumulativeVolume(sortedAsks, price => price <= highPrice);
 
-  const visibleVolume = {
+  return {
     bidVolume: parseFloat(bidVolume.toFixed(2)),
     numberOfBids: book.bids.length,
     askVolume: parseFloat(askVolume.toFixed(2)),
@@ -74,7 +74,4 @@ export function calculateVisibleVolume(book: Book, depthPercentage: number = 0.0
     highPrice: parseFloat(highPrice.toFixed(2)),
     midPrice: parseFloat(midPrice.toFixed(2))
   };
-  logger.info('Visible Volume:', visibleVolume);
-
-  return visibleVolume;
 }

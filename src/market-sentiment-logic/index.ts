@@ -1,4 +1,5 @@
 import logger from "../utils/logger";
+import { analyzeTrading } from "./analysis/analyze-trading";
 import { calculateMarketSentiment, SentimentResult } from "./calculate-market-sentiment";
 import { calculateTradeSignal, TradeSignal } from "./calculate-trade-signal";
 import { calculateVisibleVolume } from "./calculate-visible-volume";
@@ -13,6 +14,13 @@ export type SentimentBotState = {
   depthThreshold: number;
 }
 
+export type State = {
+  tradeSignal: TradeSignal;
+  marketSentiment: SentimentResult;
+  sentimentThreshold: number,
+  midPrice: number,
+  depthThreshold: number
+}
 
 /**
  * Starts the sentiment bot for the given market
@@ -22,7 +30,7 @@ export type SentimentBotState = {
 export async function startMarketSentimentCycle(
   market: string = 'BTC-EUR',
   depthPercentage: number = 0.08
-): Promise<void> {
+): Promise<State> {
   // Fetch the order book for the given market
   const book = await getBooks(market);
 
@@ -36,15 +44,21 @@ export async function startMarketSentimentCycle(
   const tradeSignal = calculateTradeSignal(marketSentiment);
 
   // Create the state object for the sentiment bot
-  const state = {
+  const state: State = {
     tradeSignal,
     marketSentiment,
     sentimentThreshold: Number(process.env.SENTIMENT_THRESHOLD),
     midPrice: visibleVolume.midPrice,
     depthThreshold: Number(process.env.DEPTH_THRESHOLD)
   };
+  logger.info('Visible Volume:', visibleVolume);
   logger.info(`State:`, state);
 
+  // Async analyze the trading based on the visible volume and the state
+  analyzeTrading(visibleVolume, state);
+
   // Execute the trade based on the calculated trade signal
-  await trade(state.tradeSignal, visibleVolume.midPrice);
+  await trade(tradeSignal, visibleVolume.midPrice);
+
+  return state;
 }

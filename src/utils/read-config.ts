@@ -44,4 +44,18 @@ export function readConfig() {
   if (isNaN(Number(process.env.SELL_PRICE_LIMIT_ORDER_MARGIN))) {
     throw new Error('SELL_PRICE_LIMIT_ORDER_MARGIN is not a number');
   }
+
+  if (!process.env.PRICE_CHANGE_THRESHOLD_FOR_ANALYSIS) {
+    throw new Error('PRICE_CHANGE_THRESHOLD_FOR_ANALYSIS not found');
+  }
+  if (isNaN(Number(process.env.PRICE_CHANGE_THRESHOLD_FOR_ANALYSIS))) {
+    throw new Error('PRICE_CHANGE_THRESHOLD_FOR_ANALYSIS is not a number');
+  }
+
+  if (!process.env.HOURS_TO_KEEP_REDIS_DATA) {
+    throw new Error('HOURS_TO_KEEP_REDIS_DATA not found');
+  }
+  if (isNaN(Number(process.env.HOURS_TO_KEEP_REDIS_DATA))) {
+    throw new Error('HOURS_TO_KEEP_REDIS_DATA is not a number');
+  }
 }

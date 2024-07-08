@@ -3,7 +3,7 @@ import { CalculationResult } from './calculate-visible-volume';
 export type SentimentResult = {
   bidVolumePercentage: number;
   marketSentiment: number;
-};
+}
 
 /**
  * Calculates the market sentiment based on the given volume result
