@@ -1,9 +1,10 @@
-import { State } from '..';
-import { storeData } from './store-data';
-import { calculateMovingAverage } from './calculate-moving-average';
-import { calculateGuessRatio } from './calculate-guess-ratio';
-import logger from '../../utils/logger';
-import { Trading } from './calculate-order-book-imbalance';
+import { State } from "..";
+import { storeData } from "./store-data";
+import { calculateMovingAverage } from "./calculate-moving-average";
+import { calculateGuessRatio } from "./calculate-guess-ratio";
+import logger from "../../utils/logger";
+import { Trading } from "./calculate-order-book-imbalance";
+import logControl from "./log-control";
 
 export interface VisibleVolumeCalculationResult {
   bidVolume: number;
@@ -16,9 +17,9 @@ export interface VisibleVolumeCalculationResult {
 }
 
 export enum TradeSignal {
-  BUY = 'BUY',
-  SELL = 'SELL',
-  HOLD = 'HOLD',
+  BUY = "BUY",
+  SELL = "SELL",
+  HOLD = "HOLD",
 }
 
 export interface SentimentResult {
@@ -26,7 +27,10 @@ export interface SentimentResult {
   marketSentiment: number;
 }
 
-export async function analyzeTrading(visibleVolume: VisibleVolumeCalculationResult, state: State): Promise<void> {
+export async function analyzeTrading(
+  visibleVolume: VisibleVolumeCalculationResult,
+  state: State
+): Promise<void> {
   const trading: Trading = {
     ...visibleVolume,
     ...state,
@@ -35,6 +39,8 @@ export async function analyzeTrading(visibleVolume: VisibleVolumeCalculationResu
   await storeData(trading);
   const movingAverage = await calculateMovingAverage();
   const guessRatio = await calculateGuessRatio();
+
+  logControl(guessRatio);
 
   const analysis = `
     Timestamp: ${new Date().toISOString()}
