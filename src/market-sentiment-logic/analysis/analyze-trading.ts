@@ -3,8 +3,9 @@ import { storeData } from './store-data';
 import { calculateMovingAverage } from './calculate-moving-average';
 import { calculateGuessRatio } from './calculate-guess-ratio';
 import logger from '../../utils/logger';
+import { Trading } from './calculate-order-book-imbalance';
 
-export interface CalculationResult {
+export interface VisibleVolumeCalculationResult {
   bidVolume: number;
   numberOfBids: number;
   askVolume: number;
@@ -17,6 +18,7 @@ export interface CalculationResult {
 export enum TradeSignal {
   BUY = 'BUY',
   SELL = 'SELL',
+  HOLD = 'HOLD',
 }
 
 export interface SentimentResult {
@@ -24,8 +26,13 @@ export interface SentimentResult {
   marketSentiment: number;
 }
 
-export async function analyzeTrading(visibleVolume: CalculationResult, state: State): Promise<void> {
-  await storeData(visibleVolume, state);
+export async function analyzeTrading(visibleVolume: VisibleVolumeCalculationResult, state: State): Promise<void> {
+  const trading: Trading = {
+    ...visibleVolume,
+    ...state,
+    timestamp: Date.now(),
+  };
+  await storeData(trading);
   const movingAverage = await calculateMovingAverage();
   const guessRatio = await calculateGuessRatio();
 
@@ -36,7 +43,7 @@ export async function analyzeTrading(visibleVolume: CalculationResult, state: St
     Current Mid Price: ${state.midPrice}
     Current Trade Signal: ${state.tradeSignal}
   `;
-  logger.info("Analysis:", analysis);
+  logger.infoFileOnly(analysis);
 
   // Reconstruct analysis in the console
   const analysisObject = {
@@ -45,5 +52,5 @@ export async function analyzeTrading(visibleVolume: CalculationResult, state: St
     "Current Mid Price:": state.midPrice,
     "Current Trade Signal": state.tradeSignal,
   };
-  console.log(analysisObject);
+  console.log("Analysis:", analysisObject);
 }

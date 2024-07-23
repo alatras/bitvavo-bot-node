@@ -17,8 +17,10 @@ function start() {
     }
   }
 
+  const cycleSeconds = Number(process.env.TRADE_CYCLE_INTERVAL);
+
   executeCycle(); // Execute immediately on start
-  setInterval(executeCycle, 30000); // Continue executing every 30 seconds
+  setInterval(executeCycle, cycleSeconds * 1000); // Continue executing every 30 seconds
 }
 
 start();

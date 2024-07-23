@@ -14,7 +14,7 @@ export type ProcessedOrder = {
   volume: number;
 };
 
-export type CalculationResult = {
+export type VisibleVolumeCalculationResult = {
   bidVolume: number;
   numberOfBids: number;
   askVolume: number;
@@ -30,7 +30,7 @@ export type CalculationResult = {
  * @param book The order book to calculate the visible volume for
  * @param depthPercentage The depth percentage to calculate the visible volume for
  */
-export function calculateVisibleVolume(book: Book, depthPercentage: number = 0.08): CalculationResult {
+export function calculateVisibleVolume(book: Book, depthPercentage: number = 0.08): VisibleVolumeCalculationResult {
   // Helper function to process orders
   const processOrders = (orders: Order[]): ProcessedOrder[] =>
     orders.map(([price, volume]) => ({

@@ -1,5 +1,3 @@
-import { TradeSignal } from "../calculate-trade-signal";
-
 /**
  * Calculates the amount of BTC that can be bought with a given EUR amount.
  * @param btcPrice The current price of one Bitcoin in EUR.

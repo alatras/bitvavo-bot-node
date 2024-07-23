@@ -44,21 +44,26 @@ class Logger {
       case LogLevel.INFO:
         console.log(...args);
         break;
+
       case LogLevel.OK:
         coloredMessage = colors.green(message);
         console.log(coloredMessage);
         break;
+
       case LogLevel.ERROR:
         coloredMessage = colors.red(message);
         console.log(`[${level}]`, coloredMessage);
-
         break;
+
       case LogLevel.WARNING:
         coloredMessage = colors.yellow(message);
         console.log(`[${level}]`, coloredMessage);
-
         break;
     }
+  }
+
+  public infoFileOnly(...args: any[]): void {
+    this.logToFile(LogLevel.INFO, args);
   }
 
   public info(...args: any[]): void {

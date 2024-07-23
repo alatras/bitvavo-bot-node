@@ -1,4 +1,4 @@
-import { CalculationResult } from './calculate-visible-volume';
+import { VisibleVolumeCalculationResult } from './calculate-visible-volume';
 
 export type SentimentResult = {
   bidVolumePercentage: number;
@@ -9,7 +9,7 @@ export type SentimentResult = {
  * Calculates the market sentiment based on the given volume result
  * @param volumeResult The volume result to calculate the market sentiment for
  */
-export function calculateMarketSentiment(volumeResult: CalculationResult): SentimentResult {
+export function calculateMarketSentiment(volumeResult: VisibleVolumeCalculationResult): SentimentResult {
   const { bidVolume, askVolume } = volumeResult;
   const totalVolume = bidVolume + askVolume;
 

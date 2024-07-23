@@ -58,4 +58,18 @@ export function readConfig() {
   if (isNaN(Number(process.env.HOURS_TO_KEEP_REDIS_DATA))) {
     throw new Error('HOURS_TO_KEEP_REDIS_DATA is not a number');
   }
+
+  if (!process.env.TRADE_CYCLE_INTERVAL) {
+    throw new Error('TRADE_CYCLE_INTERVAL not found');
+  }
+  if (isNaN(Number(process.env.TRADE_CYCLE_INTERVAL))) {
+    throw new Error('TRADE_CYCLE_INTERVAL is not a number');
+  }
+
+  if (!process.env.TRADE_HOLD_DECISION_THRESHOLD) {
+    throw new Error('TRADE_HOLD_DECISION_THRESHOLD not found');
+  }
+  if (isNaN(Number(process.env.TRADE_HOLD_DECISION_THRESHOLD))) {
+    throw new Error('TRADE_HOLD_DECISION_THRESHOLD is not a number');
+  }
 }

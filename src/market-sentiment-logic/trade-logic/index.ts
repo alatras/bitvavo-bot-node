@@ -1,5 +1,4 @@
-import { SentimentBotState } from '..';
-import { TradeSignal } from '../calculate-trade-signal';
+import { TradeSignal } from '../analysis/analyze-trading';
 import { buy } from './buy-btc';
 import { sell } from './sell.btc';
 

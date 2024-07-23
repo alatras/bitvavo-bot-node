@@ -1,6 +1,6 @@
 import { getBitvavoApi } from "../../utils/get-bitvavo-api";
 import logger from "../../utils/logger";
-import { TradeSignal } from "../calculate-trade-signal";
+import { TradeSignal } from "../analysis/analyze-trading";
 import { calculateBtcAmountToSell } from "./calculate-btc-amount-to-sell";
 import { calculatePriceAmountToTrade } from "./calculate-btc-price-to-trade";
 
@@ -11,15 +11,15 @@ import { calculatePriceAmountToTrade } from "./calculate-btc-price-to-trade";
 export async function sell(
   midPrice: number
 ): Promise<void> {
+  if (process.env.TRADE !== 'true') {
+    logger.warning('Trade is disabled. I would have sold BTC.');
+    return;
+  }
+
   const btcAmount = await calculateBtcAmountToSell();
   if (btcAmount <= 0.001) {
     logger.warning('No BTC to sell. Available:', btcAmount);
     return
-  }
-
-  if (process.env.TRADE !== 'true') {
-    logger.warning('Trade is disabled. I would have sold BTC.');
-    return;
   }
 
   try {

@@ -1,7 +1,8 @@
 import logger from "../utils/logger";
-import { analyzeTrading } from "./analysis/analyze-trading";
+import { analyzeTrading, TradeSignal } from "./analysis/analyze-trading";
+import { makeTradeDecisionBasedOnImbalance } from "./analysis/calculate-order-book-imbalance";
 import { calculateMarketSentiment, SentimentResult } from "./calculate-market-sentiment";
-import { calculateTradeSignal, TradeSignal } from "./calculate-trade-signal";
+import { calculateTradeSignal } from "./calculate-trade-signal";
 import { calculateVisibleVolume } from "./calculate-visible-volume";
 import { getBooks } from "./get-book";
 import { trade } from "./trade-logic";
@@ -42,6 +43,8 @@ export async function startMarketSentimentCycle(
 
   // Calculate the trade signal based on the market sentiment
   const tradeSignal = calculateTradeSignal(marketSentiment);
+
+  await makeTradeDecisionBasedOnImbalance();
 
   // Create the state object for the sentiment bot
   const state: State = {
