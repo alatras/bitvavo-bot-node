@@ -2,14 +2,40 @@ import * as fs from "fs";
 import * as path from "path";
 import dotenv from "dotenv";
 
+/**
+ * A control object to be logged to a file.
+ */
 interface ControlObject {
   name: string;
   guessRatio: number;
+  checks: number;
+  startDate: string;
+  endDate: string;
   control: Record<string, string>;
 }
 
+/**
+ * Check if a key is a credential-related variable.
+ * @param key The key to check
+ * @returns True if the key is a credential-related variable, false otherwise
+ */
 function isCredential(key: string): boolean {
   return /API(KEY|SECRET)|PASSWORD|TOKEN/i.test(key);
+}
+
+/**
+ * Format a date object into a string.
+ * @param date The date object to format
+ * @returns A string representation of the date. Example: "15 January 2022, 12:34"
+ */
+function formatDate(date: Date): string {
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const day = date.getDate();
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
+  const hours = date.getHours().toString().padStart(2, '0');
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+  return `${day} ${month} ${year}, ${hours}:${minutes}`;
 }
 
 /**
@@ -17,18 +43,16 @@ function isCredential(key: string): boolean {
  * This is for tracking the performance of different control objects.
  * @param guessRatio The ratio of correct guesses
  */
-function logControl(guessRatio: number): void {
+function logControl(guessRatio: number, nameSuffix?: string): void {
   // Load environment variables from .env file
   const result = dotenv.config();
-
   if (result.error) {
     throw new Error("Error loading .env file");
   }
-
   const env = result.parsed || {};
 
   // Formulate a unique string name
-  const uniqueName = Object.entries(env)
+  let uniqueName = Object.entries(env)
     .filter(([key, value]) => {
       const isValidNumber = value !== undefined && !isNaN(Number(value));
       return !isCredential(key) && isValidNumber;
@@ -36,10 +60,18 @@ function logControl(guessRatio: number): void {
     .map(([, value]) => value)
     .join("");
 
+  // Append the suffix to the unique name
+  if (uniqueName && nameSuffix) {
+    uniqueName += nameSuffix;
+  }
+
   // Create the control object, excluding credential-related variables
   const controlObject: ControlObject = {
     name: uniqueName,
     guessRatio,
+    checks: 1, // Initialize checks to 1
+    startDate: formatDate(new Date()), // Set the start date
+    endDate: formatDate(new Date()), // Set the initial end date
     control: Object.entries(env).reduce((acc, [key, value]) => {
       if (!isCredential(key)) {
         acc[key] = value;
@@ -64,14 +96,24 @@ function logControl(guessRatio: number): void {
     existingLog = fileContent ? JSON.parse(fileContent) : [];
   }
 
-  // Find and remove the existing object with the same name, if any
+  // Find the existing object with the same name, if any
   const index = existingLog.findIndex((obj) => obj.name === uniqueName);
   if (index !== -1) {
-    existingLog.splice(index, 1);
+    // If the object exists, increment the checks
+    if (existingLog[index].checks !== undefined) {
+      existingLog[index].checks += 1;
+    } else {
+      // If 'checks' doesn't exist in an already-existing entry, add it starting from 1
+      existingLog[index].checks = 1;
+    }
+    // Update other fields
+    existingLog[index].guessRatio = guessRatio;
+    existingLog[index].control = controlObject.control;
+    existingLog[index].endDate = formatDate(new Date()); // Update the end date
+  } else {
+    // If it's a new control object, add it to the log
+    existingLog.push(controlObject);
   }
-
-  // Add the new control object
-  existingLog.push(controlObject);
 
   // Write the updated log back to the file
   fs.writeFileSync(logFilePath, JSON.stringify(existingLog, null, 2));

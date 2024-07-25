@@ -1,7 +1,10 @@
 import logger from "../utils/logger";
 import { analyzeTrading, TradeSignal } from "./analysis/analyze-trading";
 import { makeTradeDecisionBasedOnImbalance } from "./analysis/calculate-order-book-imbalance";
-import { calculateMarketSentiment, SentimentResult } from "./calculate-market-sentiment";
+import {
+  calculateMarketSentiment,
+  SentimentResult,
+} from "./calculate-market-sentiment";
 import { calculateTradeSignal } from "./calculate-trade-signal";
 import { calculateVisibleVolume } from "./calculate-visible-volume";
 import { getBooks } from "./get-book";
@@ -13,15 +16,15 @@ export type SentimentBotState = {
   sentimentThreshold: number;
   midPrice: number;
   depthThreshold: number;
-}
+};
 
 export type State = {
   tradeSignal: TradeSignal;
   marketSentiment: SentimentResult;
-  sentimentThreshold: number,
-  midPrice: number,
-  depthThreshold: number
-}
+  sentimentThreshold: number;
+  midPrice: number;
+  depthThreshold: number;
+};
 
 /**
  * Starts the sentiment bot for the given market
@@ -29,9 +32,9 @@ export type State = {
  * @param depthPercentage The depth percentage to calculate the visible volume for
  */
 export async function startMarketSentimentCycle(
-  market: string = 'BTC-EUR',
+  market: string = "BTC-EUR",
   depthPercentage: number = 0.08
-): Promise<State> {
+): Promise<void> {
   // Fetch the order book for the given market
   const book = await getBooks(market);
 
@@ -44,7 +47,9 @@ export async function startMarketSentimentCycle(
   // Calculate the trade signal based on the market sentiment
   const tradeSignal = calculateTradeSignal(marketSentiment);
 
-  await makeTradeDecisionBasedOnImbalance();
+  // Calculate the trade signal based on the order book imbalance
+  // TODO: try using this trade signal in the trade logic and analyze
+  const tradeSignalImbalance = await makeTradeDecisionBasedOnImbalance();
 
   // Create the state object for the sentiment bot
   const state: State = {
@@ -52,16 +57,11 @@ export async function startMarketSentimentCycle(
     marketSentiment,
     sentimentThreshold: Number(process.env.SENTIMENT_THRESHOLD),
     midPrice: visibleVolume.midPrice,
-    depthThreshold: Number(process.env.DEPTH_THRESHOLD)
+    depthThreshold: Number(process.env.DEPTH_THRESHOLD),
   };
-  logger.info('Visible Volume:', visibleVolume);
-  logger.info(`State:`, state);
-
   // Async analyze the trading based on the visible volume and the state
   analyzeTrading(visibleVolume, state);
 
   // Execute the trade based on the calculated trade signal
   await trade(tradeSignal, visibleVolume.midPrice);
-
-  return state;
 }

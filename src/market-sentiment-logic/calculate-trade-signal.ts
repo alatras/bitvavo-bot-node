@@ -9,9 +9,9 @@ export const calculateTradeSignal = (
   sentiment: SentimentResult,
 ): TradeSignal => {
   const threshold = Number(process.env.SENTIMENT_THRESHOLD);
+  
   const difference = Math.abs(sentiment.marketSentiment - threshold);
   const hold = Number(process.env.PRICE_CHANGE_THRESHOLD_FOR_ANALYSIS);
-  
   if (difference <= hold) {
     return TradeSignal.HOLD;
   }

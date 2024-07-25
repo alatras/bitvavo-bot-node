@@ -159,15 +159,15 @@ export async function makeTradeDecisionBasedOnImbalance(): Promise<TradeSignal> 
 
   // Example decision logic (you should customize this based on backtesting)
   let signal: TradeSignal
-  if (imbalanceData.weightedImbalance > 0.15 && imbalanceData.recentTrend > 0) {
+  if (imbalanceData.weightedImbalance > 0.06 && imbalanceData.recentTrend > 0) {
     signal = TradeSignal.BUY;
-  } else if (imbalanceData.weightedImbalance < -0.15 && imbalanceData.recentTrend < 0) {
+  } else if (imbalanceData.weightedImbalance < -0.06 && imbalanceData.recentTrend < 0) {
     signal = TradeSignal.SELL;
   } else {
     signal = TradeSignal.HOLD;
   }
 
-  console.log("Trade Signal:", signal);
+  console.log("Imbalance trade signal:", signal);
 
   return signal;
 }

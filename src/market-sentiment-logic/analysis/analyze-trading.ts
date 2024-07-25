@@ -29,34 +29,35 @@ export interface SentimentResult {
 
 export async function analyzeTrading(
   visibleVolume: VisibleVolumeCalculationResult,
-  state: State
+  state: State,
+  tradingSignalFindingMethod?: string
 ): Promise<void> {
+  // Store the trading data
   const trading: Trading = {
     ...visibleVolume,
     ...state,
     timestamp: Date.now(),
   };
   await storeData(trading);
+
+  // Calculate the moving average and guess ratio
   const movingAverage = await calculateMovingAverage();
+
+  // Calculate the guess ratio
   const guessRatio = await calculateGuessRatio();
 
-  logControl(guessRatio);
+  // Log controls with the guess ratio for future analysis per configuration settings
+  logControl(guessRatio, tradingSignalFindingMethod);
 
-  const analysis = `
-    Timestamp: ${new Date().toISOString()}
-    Moving Average (24h): ${movingAverage}
-    Guess Ratio: ${guessRatio}
-    Current Mid Price: ${state.midPrice}
-    Current Trade Signal: ${state.tradeSignal}
-  `;
-  logger.infoFileOnly(analysis);
-
-  // Reconstruct analysis in the console
+  // Log the analysis
+  logger.info("Visible Volume:", visibleVolume);
+  logger.info(`State:`, state);
   const analysisObject = {
+    "Timestamp:": new Date().toISOString(),
     "Moving Average (24h)": movingAverage,
     "Guess Ratio:": guessRatio,
     "Current Mid Price:": state.midPrice,
     "Current Trade Signal": state.tradeSignal,
   };
-  console.log("Analysis:", analysisObject);
+  logger.info("Analysis:", analysisObject);
 }
