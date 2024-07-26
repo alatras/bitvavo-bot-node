@@ -87,7 +87,7 @@ function logControl(guessRatio: number, nameSuffix?: string): void {
   }
 
   // Path to the log file
-  const logFilePath = path.join(logDir, "control-history.log");
+  const logFilePath = path.join(logDir, "control-history.json");
 
   // Read existing log file or create an empty array if it doesn't exist
   let existingLog: ControlObject[] = [];
