@@ -1,0 +1,263 @@
+[
+  {
+    "timestamp": "2024-07-28T09:54:42.037Z",
+    "signal": {
+      "action": "SELL",
+      "confidence": 0.0592597137969737,
+      "reason": "Order book imbalance of -5.93% suggests SELL pressure. Price 1.83% below VWAP. "
+    },
+    "currentPrice": 62074
+  },
+  {
+    "timestamp": "2024-07-28T10:01:42.275Z",
+    "signal": {
+      "action": "BUY",
+      "confidence": 0.055635790775675105,
+      "reason": "Price 1.85% below VWAP. "
+    },
+    "currentPrice": 62045
+  },
+  {
+    "timestamp": "2024-07-28T10:08:42.276Z",
+    "signal": {
+      "action": "BUY",
+      "confidence": 0.05322103164555612,
+      "reason": "Price 1.77% below VWAP. "
+    },
+    "currentPrice": 62110
+  },
+  {
+    "timestamp": "2024-07-28T10:15:42.278Z",
+    "signal": {
+      "action": "SELL",
+      "confidence": 0.0681148455134489,
+      "reason": "Order book imbalance of -6.81% suggests SELL pressure. Price 1.67% below VWAP. "
+    },
+    "currentPrice": 62227
+  },
+  {
+    "timestamp": "2024-07-28T10:22:42.257Z",
+    "signal": {
+      "action": "SELL",
+      "confidence": 0.06937010516943493,
+      "reason": "Order book imbalance of -6.94% suggests SELL pressure. Price 1.71% below VWAP. "
+    },
+    "currentPrice": 62237
+  },
+  {
+    "timestamp": "2024-07-28T10:29:42.252Z",
+    "signal": {
+      "action": "BUY",
+      "confidence": 0.05197847981021751,
+      "reason": "Price 1.73% below VWAP. "
+    },
+    "currentPrice": 62238
+  },
+  {
+    "timestamp": "2024-07-28T10:36:42.265Z",
+    "signal": {
+      "action": "SELL",
+      "confidence": 0.13700498730926772,
+      "reason": "Market depth imbalance of -27.40% suggests SELL pressure. Price 1.71% below VWAP. "
+    },
+    "currentPrice": 62237
+  },
+  {
+    "timestamp": "2024-07-28T10:43:42.276Z",
+    "signal": {
+      "action": "BUY",
+      "confidence": 0.31776152512640815,
+      "reason": "Order book imbalance of -7.32% suggests SELL pressure. Market depth imbalance of 63.55% suggests BUY pressure. Price 1.73% below VWAP. "
+    },
+    "currentPrice": 62239
+  },
+  {
+    "timestamp": "2024-07-28T10:50:42.281Z",
+    "signal": {
+      "action": "SELL",
+      "confidence": 0.06350368459377492,
+      "reason": "Order book imbalance of -6.35% suggests SELL pressure. Price 1.69% below VWAP. "
+    },
+    "currentPrice": 62243
+  },
+  {
+    "timestamp": "2024-07-28T10:57:42.285Z",
+    "signal": {
+      "action": "SELL",
+      "confidence": 0.056257428728543224,
+      "reason": "Order book imbalance of -5.63% suggests SELL pressure. Price 1.73% below VWAP. "
+    },
+    "currentPrice": 62200
+  },
+  {
+    "timestamp": "2024-07-28T11:04:42.240Z",
+    "signal": {
+      "action": "BUY",
+      "confidence": 0.1379824680363035,
+      "reason": "Order book imbalance of -6.86% suggests SELL pressure. Market depth imbalance of 27.60% suggests BUY pressure. Price 1.69% below VWAP. "
+    },
+    "currentPrice": 62243
+  },
+  {
+    "timestamp": "2024-07-28T11:11:42.285Z",
+    "signal": {
+      "action": "SELL",
+      "confidence": 0.06553208641815661,
+      "reason": "Order book imbalance of -6.55% suggests SELL pressure. Price 1.66% below VWAP. "
+    },
+    "currentPrice": 62275
+  },
+  {
+    "timestamp": "2024-07-28T11:18:42.263Z",
+    "signal": {
+      "action": "SELL",
+      "confidence": 0.21508474578550826,
+      "reason": "Order book imbalance of -8.61% suggests SELL pressure. Market depth imbalance of -43.02% suggests SELL pressure. Price 1.60% below VWAP. "
+    },
+    "currentPrice": 62325
+  },
+  {
+    "timestamp": "2024-07-28T11:25:42.259Z",
+    "signal": {
+      "action": "BUY",
+      "confidence": 0.16391729822426293,
+      "reason": "Order book imbalance of -6.34% suggests SELL pressure. Market depth imbalance of 32.78% suggests BUY pressure. Price 1.63% below VWAP. "
+    },
+    "currentPrice": 62399
+  },
+  {
+    "timestamp": "2024-07-28T11:32:42.282Z",
+    "signal": {
+      "action": "SELL",
+      "confidence": 0.14008161748757222,
+      "reason": "Order book imbalance of -6.66% suggests SELL pressure. Market depth imbalance of -28.02% suggests SELL pressure. Price 1.65% below VWAP. "
+    },
+    "currentPrice": 62404
+  },
+  {
+    "timestamp": "2024-07-28T11:39:42.275Z",
+    "signal": {
+      "action": "BUY",
+      "confidence": 0.11553091174016658,
+      "reason": "Order book imbalance of -5.83% suggests SELL pressure. Market depth imbalance of 23.11% suggests BUY pressure. Price 1.63% below VWAP. "
+    },
+    "currentPrice": 62383
+  },
+  {
+    "timestamp": "2024-07-28T11:46:42.270Z",
+    "signal": {
+      "action": "SELL",
+      "confidence": 0.07619010283151689,
+      "reason": "Order book imbalance of -7.62% suggests SELL pressure. Price 1.64% below VWAP. "
+    },
+    "currentPrice": 62550
+  },
+  {
+    "timestamp": "2024-07-28T11:53:42.522Z",
+    "signal": {
+      "action": "SELL",
+      "confidence": 0.07772436003139686,
+      "reason": "Order book imbalance of -7.77% suggests SELL pressure. Price 1.72% below VWAP. "
+    },
+    "currentPrice": 62503
+  },
+  {
+    "timestamp": "2024-07-28T12:00:42.283Z",
+    "signal": {
+      "action": "BUY",
+      "confidence": 0.21544258843202174,
+      "reason": "Order book imbalance of -7.40% suggests SELL pressure. Market depth imbalance of 43.09% suggests BUY pressure. Price 1.75% below VWAP. "
+    },
+    "currentPrice": 62455
+  },
+  {
+    "timestamp": "2024-07-28T12:07:42.273Z",
+    "signal": {
+      "action": "BUY",
+      "confidence": 0.17882611615476682,
+      "reason": "Market depth imbalance of 35.77% suggests BUY pressure. Price 1.64% below VWAP. "
+    },
+    "currentPrice": 62398
+  },
+  {
+    "timestamp": "2024-07-28T12:14:42.279Z",
+    "signal": {
+      "action": "BUY",
+      "confidence": 0.04910776745462706,
+      "reason": "Price 1.64% below VWAP. "
+    },
+    "currentPrice": 62432
+  },
+  {
+    "timestamp": "2024-07-28T12:21:42.325Z",
+    "signal": {
+      "action": "SELL",
+      "confidence": 0.050159413018098654,
+      "reason": "Order book imbalance of -5.02% suggests SELL pressure. Price 1.54% below VWAP. "
+    },
+    "currentPrice": 62539
+  },
+  {
+    "timestamp": "2024-07-28T12:28:42.312Z",
+    "signal": {
+      "action": "BUY",
+      "confidence": 0.20177541030340532,
+      "reason": "Market depth imbalance of 40.36% suggests BUY pressure. Price 1.58% below VWAP. "
+    },
+    "currentPrice": 62459
+  },
+  {
+    "timestamp": "2024-07-28T12:35:42.288Z",
+    "signal": {
+      "action": "BUY",
+      "confidence": 0.04438641634789007,
+      "reason": "Price 1.48% below VWAP. "
+    },
+    "currentPrice": 62589
+  },
+  {
+    "timestamp": "2024-07-28T12:42:44.361Z",
+    "signal": {
+      "action": "SELL",
+      "confidence": 0.1904129011018171,
+      "reason": "Order book imbalance of -11.80% suggests SELL pressure. Market depth imbalance of -38.08% suggests SELL pressure. Price 1.52% below VWAP. "
+    },
+    "currentPrice": 62682
+  },
+  {
+    "timestamp": "2024-07-28T12:49:44.369Z",
+    "signal": {
+      "action": "SELL",
+      "confidence": 0.10908537064739864,
+      "reason": "Order book imbalance of -10.91% suggests SELL pressure. Price 1.59% below VWAP. "
+    },
+    "currentPrice": 62607
+  },
+  {
+    "timestamp": "2024-07-28T12:56:44.404Z",
+    "signal": {
+      "action": "BUY",
+      "confidence": 0.1922184430046544,
+      "reason": "Order book imbalance of -11.68% suggests SELL pressure. Market depth imbalance of 38.44% suggests BUY pressure. Price 1.57% below VWAP. "
+    },
+    "currentPrice": 62654
+  },
+  {
+    "timestamp": "2024-07-28T13:03:44.383Z",
+    "signal": {
+      "action": "SELL",
+      "confidence": 0.1281236052726572,
+      "reason": "Order book imbalance of -10.39% suggests SELL pressure. Market depth imbalance of -25.62% suggests SELL pressure. Price 1.53% below VWAP. "
+    },
+    "currentPrice": 62643
+  },
+  {
+    "timestamp": "2024-07-28T13:10:44.405Z",
+    "signal": {
+      "action": "SELL",
+      "confidence": 0.09970102352981444,
+      "reason": "Order book imbalance of -9.97% suggests SELL pressure. Price 1.65% below VWAP. "
+    },
+    "currentPrice": 62563
+  }
+]

@@ -1,4 +1,3 @@
-import { VisibleVolumeCalculationResult } from './analyze-trading';
 import redis from '../../utils/redis-client';
 import { Trading } from './calculate-order-book-imbalance';
 

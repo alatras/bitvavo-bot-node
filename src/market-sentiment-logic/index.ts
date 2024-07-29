@@ -32,14 +32,13 @@ export type State = {
  * @param depthPercentage The depth percentage to calculate the visible volume for
  */
 export async function startMarketSentimentCycle(
-  market: string = "BTC-EUR",
-  depthPercentage: number = 0.08
+  market: string = "BTC-EUR"
 ): Promise<void> {
   // Fetch the order book for the given market
   const book = await getBooks(market);
 
   // Calculate the visible volume for the given order book
-  const visibleVolume = calculateVisibleVolume(book, depthPercentage);
+  const visibleVolume = calculateVisibleVolume(book);
 
   // Calculate the market sentiment for the given visible
   const marketSentiment = calculateMarketSentiment(visibleVolume);
@@ -57,7 +56,7 @@ export async function startMarketSentimentCycle(
     marketSentiment,
     sentimentThreshold: Number(process.env.SENTIMENT_THRESHOLD),
     midPrice: visibleVolume.midPrice,
-    depthThreshold: Number(process.env.DEPTH_THRESHOLD),
+    depthThreshold: Number(process.env.ORDER_BOOK_DEPTH_THRESHOLD),
   };
   // Async analyze the trading based on the visible volume and the state
   analyzeTrading(visibleVolume, state);

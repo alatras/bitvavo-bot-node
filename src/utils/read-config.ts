@@ -24,12 +24,12 @@ export function readConfig() {
     throw new Error('SENTIMENT_THRESHOLD is not a number');
   }
 
-  if (!process.env.DEPTH_THRESHOLD) {
-    throw new Error('BITVAVO_URL not found');
-  }
-  if (isNaN(Number(process.env.DEPTH_THRESHOLD))) {
-    throw new Error('DEPTH_THRESHOLD is not a number');
-  }
+  // if (!process.env.ORDER_BOOK_DEPTH_THRESHOLD) {
+  //   throw new Error('BITVAVO_URL not found');
+  // }
+  // if (isNaN(Number(process.env.ORDER_BOOK_DEPTH_THRESHOLD))) {
+  //   throw new Error('ORDER_BOOK_DEPTH_THRESHOLD is not a number');
+  // }
 
   if (!process.env.BUY_PRICE_LIMIT_ORDER_MARGIN) {
     throw new Error('BUY_PRICE_LIMIT_ORDER_MARGIN not found');

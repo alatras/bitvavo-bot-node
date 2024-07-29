@@ -9,7 +9,7 @@ function start() {
     try {
       logger.info('\n');
       logger.OK(`${new Date().toISOString()} ` + '------------------- run ---------------------');
-      await startMarketSentimentCycle('BTC-EUR', Number(process.env.DEPTH_THRESHOLD));
+      await startMarketSentimentCycle('BTC-EUR');
     } catch (error) {
       logger.error('Error operating trading bot.');
       console.error(error);

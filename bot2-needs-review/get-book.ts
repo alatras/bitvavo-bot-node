@@ -1,6 +1,6 @@
-import { getBitvavoApi } from '../utils/get-bitvavo-api';
-import logger from '../utils/logger';
-import { Book } from './calculate-visible-volume';
+import { Book } from "../src/market-sentiment-logic/calculate-visible-volume";
+import { getBitvavoApi } from "../src/utils/get-bitvavo-api";
+import logger from "../src/utils/logger";
 
 /**
  * Fetches the order book for the given trading pair

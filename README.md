@@ -25,3 +25,4 @@ npm start
 ## Notes
 - **The file `.env` is control panel for tuning.**
 - **The `.evn` comments are the observer notes. Refer to them to understand more.**
+- **Bot2 and Bot3 are different bots that may share `node_modules` with the main bot. Don't put the main bot in a folder.s**

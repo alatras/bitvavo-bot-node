@@ -5,16 +5,7 @@ import { calculateGuessRatio } from "./calculate-guess-ratio";
 import logger from "../../utils/logger";
 import { Trading } from "./calculate-order-book-imbalance";
 import logControl from "./log-control";
-
-export interface VisibleVolumeCalculationResult {
-  bidVolume: number;
-  numberOfBids: number;
-  askVolume: number;
-  numberOfAsks: number;
-  lowPrice: number;
-  highPrice: number;
-  midPrice: number;
-}
+import { VisibleVolumeCalculationResult } from "../calculate-visible-volume";
 
 export enum TradeSignal {
   BUY = "BUY",
@@ -37,6 +28,8 @@ export async function analyzeTrading(
     ...visibleVolume,
     ...state,
     timestamp: Date.now(),
+    lowPrice: 0,
+    highPrice: 0
   };
   await storeData(trading);
 

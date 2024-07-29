@@ -5,6 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node src/app.ts",
+    "start2": "ts-node drafts/scoreFinder.ts",
+    "saveBook": "ts-node src/market-sentiment-logic/get-book-save-fs.ts",
     "build": "tsc"
   },
   "keywords": [],
