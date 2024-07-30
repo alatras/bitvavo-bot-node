@@ -1,4 +1,4 @@
-import { TradeSignal } from "../analysis/analyze-trading";
+import { TradeSignal } from "../types";
 
 /**
  * Calculate the price amount to trade

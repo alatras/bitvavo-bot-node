@@ -1,6 +1,6 @@
 import { getBitvavoApi } from "../../utils/get-bitvavo-api";
 import logger from "../../utils/logger";
-import { TradeSignal } from "../analysis/analyze-trading";
+import { TradeSignal } from "../types";
 import { calculateBtcAmountToSell } from "./calculate-btc-amount-to-sell";
 import { calculatePriceAmountToTrade } from "./calculate-btc-price-to-trade";
 

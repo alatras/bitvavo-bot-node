@@ -1,4 +1,4 @@
-import { TradeSignal } from '../analysis/analyze-trading';
+import { TradeSignal } from '../types';
 import { buy } from './buy-btc';
 import { sell } from './sell.btc';
 

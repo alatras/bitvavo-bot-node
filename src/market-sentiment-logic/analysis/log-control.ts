@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
-import dotenv from "dotenv";
+import dotenv, { DotenvParseOutput } from "dotenv";
 
 /**
  * A control object to be logged to a file.
@@ -29,27 +29,58 @@ function isCredential(key: string): boolean {
  * @returns A string representation of the date. Example: "15 January 2022, 12:34"
  */
 function formatDate(date: Date): string {
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
   const day = date.getDate();
   const month = months[date.getMonth()];
   const year = date.getFullYear();
-  const hours = date.getHours().toString().padStart(2, '0');
-  const minutes = date.getMinutes().toString().padStart(2, '0');
+  const hours = date.getHours().toString().padStart(2, "0");
+  const minutes = date.getMinutes().toString().padStart(2, "0");
   return `${day} ${month} ${year}, ${hours}:${minutes}`;
 }
+
+let EVN_OF_A_SINGLE_RUN: any;
+
+const getSnapshotFromEnv = (): DotenvParseOutput => {
+  if (EVN_OF_A_SINGLE_RUN) {
+    return EVN_OF_A_SINGLE_RUN;
+  }
+
+  const file = process.env.ENV_FILE_NAME;
+
+  // Load environment variables from .env file
+  const result = dotenv.config(file ? { path: file } : {});
+  if (result.error) {
+    throw new Error("Error loading .env file");
+  }
+  const env = result.parsed || {};
+  EVN_OF_A_SINGLE_RUN = env;
+  return env;
+};
 
 /**
  * Log the control object (from .env) to a file along with the guess ratio.
  * This is for tracking the performance of different control objects.
  * @param guessRatio The ratio of correct guesses
  */
-function logControl(guessRatio: number, nameSuffix?: string): void {
-  // Load environment variables from .env file
-  const result = dotenv.config();
-  if (result.error) {
-    throw new Error("Error loading .env file");
-  }
-  const env = result.parsed || {};
+function logControl(
+  guessRatio: number,
+  nameSuffix?: string,
+  instanceId?: string
+): void {
+  const env = getSnapshotFromEnv();
 
   // Formulate a unique string name
   let uniqueName = Object.entries(env)
@@ -69,9 +100,9 @@ function logControl(guessRatio: number, nameSuffix?: string): void {
   const controlObject: ControlObject = {
     name: uniqueName,
     guessRatio,
-    checks: 1, // Initialize checks to 1
-    startDate: formatDate(new Date()), // Set the start date
-    endDate: formatDate(new Date()), // Set the initial end date
+    checks: 1,
+    startDate: formatDate(new Date()),
+    endDate: formatDate(new Date()),
     control: Object.entries(env).reduce((acc, [key, value]) => {
       if (!isCredential(key)) {
         acc[key] = value;

@@ -6,6 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node src/app.ts",
     "start2": "ts-node drafts/scoreFinder.ts",
+    "runner": "ts-node ./runner.ts",
     "saveBook": "ts-node src/market-sentiment-logic/get-book-save-fs.ts",
     "build": "tsc"
   },
@@ -15,6 +16,7 @@
   "description": "",
   "devDependencies": {
     "@types/node": "^20.14.10",
+    "@types/uuid": "^10.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.3"
   },
@@ -23,6 +25,7 @@
     "chalk": "^5.3.0",
     "colors": "^1.4.0",
     "dotenv": "^16.4.5",
-    "ioredis": "^5.4.1"
+    "ioredis": "^5.4.1",
+    "uuid": "^10.0.0"
   }
 }

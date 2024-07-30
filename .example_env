@@ -1,6 +1,6 @@
 # API key and secret for the Bitvavo API
-APIKEY=
-APISECRET=
+APIKEY="123"
+APISECRET="123"
 
 # EUR_AMOUNT: Amount of EUR to buy or sell
 EUR_AMOUNT='500'
@@ -8,33 +8,33 @@ EUR_AMOUNT='500'
 # TRADE: 'true': the bot to buy or sell. 'false': the bot just simulate.
 TRADE='false'
 
+# CACHE_BOOK_ORDERS: 'true': the bot to cache the book orders. 'false': the bot to not cache the book orders.
+CACHE_BOOK_ORDERS='false'
+
 # BUY_PRICE_LIMIT_ORDER_MARGIN: The reduction in bid price bellow mid-price for the bot to buy
 BUY_PRICE_LIMIT_ORDER_MARGIN='11'
 
 # SELL_PRICE_LIMIT_ORDER_MARGIN: The increase in ask price above mid-price for the bot to sell
 SELL_PRICE_LIMIT_ORDER_MARGIN='5'
 
-# PRICE_CHANGE_THRESHOLD_FOR_ANALYSIS: The minimum price change for the bot to analyze its performance
-# 0.1% change
-PRICE_CHANGE_THRESHOLD_FOR_ANALYSIS='0.001'
-
 # HOURS_TO_KEEP_REDIS_DATA: The number of hours to keep the data in Redis for analysis
 HOURS_TO_KEEP_REDIS_DATA='48'
 
-# TRADE_HOLD_DECISION_THRESHOLD: The threshold for the bot to hold, not to buy or sell
-TRADE_HOLD_DECISION_THRESHOLD='0.001'
+# PRICE_CHANGE_THRESHOLD_FOR_ANALYSIS: The minimum price change for the bot to analyze its performance
+# Bellows this threshold, the bot will not analyze its performance
+MINIMUM_DIFFERENCE_FOR_ANALYSIS='0.00005'
+
+# MAX_DIFFERENCE_FOR_HOLD: The maximum difference between the bid and ask price for the bot to hold
+MAX_DIFFERENCE_FOR_HOLD='0.001'
 
 # SENTIMENT_THRESHOLD: sentiment threshold (percentage) for the bot to buy or sell.
 # This is scaled from 0 to 100. 0 means the bot will only buy, 100 means the bot will only sell.
 # The higher the threshold, the more secured the trading is, but the less the bot will trade.
 # The lower the ORDER_BOOK_DEPTH_THRESHOLD is, the lower the SENTIMENT_THRESHOLD should be to make a trade.
-SENTIMENT_THRESHOLD='60'
+SENTIMENT_THRESHOLD='52'
 
-# ORDER_BOOK_DEPTH_THRESHOLD: depth threshold amont all book orders for the bot to buy or sell within this range
-# The lower the threshold, the more accurate the signal prediction is.
-# The lower the threshold, the lower the SENTIMENT_THRESHOLD can be to make a trade. This is because on the low range bids and asks are more balanced.
-# Currently, the higher the better the market (always more bids than asks). This may change in the future.
-ORDER_BOOK_DEPTH_THRESHOLD='0.005'
+# ORDER_BOOK_DEPTH: The number of orders to consider in the order book
+ORDER_BOOK_DEPTH='30'
 
 # TRADE_CYCLE_INTERVAL: The number of seconds to wait before the bot makes another trade cycle
-TRADE_CYCLE_INTERVAL='45'
+TRADE_CYCLE_INTERVAL='10'

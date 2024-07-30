@@ -1,6 +1,6 @@
 import logger from "../utils/logger";
-import { analyzeTrading, TradeSignal } from "./analysis/analyze-trading";
-import { makeTradeDecisionBasedOnImbalance } from "./analysis/calculate-order-book-imbalance";
+import { v4 as uuidv4 } from "uuid";
+import { analyzeTrading, } from "./analysis/analyze-trading";
 import {
   calculateMarketSentiment,
   SentimentResult,
@@ -9,6 +9,7 @@ import { calculateTradeSignal } from "./calculate-trade-signal";
 import { calculateVisibleVolume } from "./calculate-visible-volume";
 import { getBooks } from "./get-book";
 import { trade } from "./trade-logic";
+import { TradeSignal } from "./types";
 
 export type SentimentBotState = {
   tradeSignal: TradeSignal;
@@ -23,7 +24,7 @@ export type State = {
   marketSentiment: SentimentResult;
   sentimentThreshold: number;
   midPrice: number;
-  depthThreshold: number;
+  orderBookDepth: number;
 };
 
 /**
@@ -32,7 +33,8 @@ export type State = {
  * @param depthPercentage The depth percentage to calculate the visible volume for
  */
 export async function startMarketSentimentCycle(
-  market: string = "BTC-EUR"
+  market: string = "BTC-EUR",
+  instanceId: string,
 ): Promise<void> {
   // Fetch the order book for the given market
   const book = await getBooks(market);
@@ -46,20 +48,16 @@ export async function startMarketSentimentCycle(
   // Calculate the trade signal based on the market sentiment
   const tradeSignal = calculateTradeSignal(marketSentiment);
 
-  // Calculate the trade signal based on the order book imbalance
-  // TODO: try using this trade signal in the trade logic and analyze
-  const tradeSignalImbalance = await makeTradeDecisionBasedOnImbalance();
-
   // Create the state object for the sentiment bot
   const state: State = {
     tradeSignal,
     marketSentiment,
     sentimentThreshold: Number(process.env.SENTIMENT_THRESHOLD),
     midPrice: visibleVolume.midPrice,
-    depthThreshold: Number(process.env.ORDER_BOOK_DEPTH_THRESHOLD),
+    orderBookDepth: Number(process.env.ORDER_BOOK_DEPTH),
   };
   // Async analyze the trading based on the visible volume and the state
-  analyzeTrading(visibleVolume, state);
+  analyzeTrading(visibleVolume, state, instanceId);
 
   // Execute the trade based on the calculated trade signal
   await trade(tradeSignal, visibleVolume.midPrice);

@@ -6,7 +6,7 @@ import redis from "./redis-client";
 
 dotenv.config();
 
-const CACHE_TTL = 10; // Cache time-to-live in seconds
+const CACHE_TTL = 30; // Cache time-to-live in seconds
 
 /**
  * Fetches the order book for the given trading pair
@@ -30,8 +30,9 @@ export const getBooks = async (pair = "BTC-EUR"): Promise<Book> => {
     }
 
     // If not cached, fetch from API
+    const depth = Number(process.env.ORDER_BOOK_DEPTH);
     const bitvavo = getBitvavoApi();
-    const book: Book = await bitvavo.book(pair, { depth: 500 });
+    const book: Book = await bitvavo.book(pair, { depth });
     console.log(
       "Fetched from API - asks:",
       book.asks.length,

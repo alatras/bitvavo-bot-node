@@ -1,5 +1,5 @@
-import { TradeSignal } from "./analysis/analyze-trading";
 import { SentimentResult } from "./calculate-market-sentiment";
+import { TradeSignal } from "./types";
 
 /**
  * Calculates the trade signal based on the market sentiment
