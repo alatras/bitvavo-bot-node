@@ -77,8 +77,7 @@ const getSnapshotFromEnv = (): DotenvParseOutput => {
  */
 function logControl(
   guessRatio: number,
-  nameSuffix?: string,
-  instanceId?: string
+  instanceId: string
 ): void {
   const env = getSnapshotFromEnv();
 
@@ -90,11 +89,6 @@ function logControl(
     })
     .map(([, value]) => value)
     .join("");
-
-  // Append the suffix to the unique name
-  if (uniqueName && nameSuffix) {
-    uniqueName += nameSuffix;
-  }
 
   // Create the control object, excluding credential-related variables
   const controlObject: ControlObject = {
@@ -118,7 +112,7 @@ function logControl(
   }
 
   // Path to the log file
-  const logFilePath = path.join(logDir, "control-history.json");
+  const logFilePath = path.join(logDir, `control-history-${instanceId}.json`);
 
   // Read existing log file or create an empty array if it doesn't exist
   let existingLog: ControlObject[] = [];

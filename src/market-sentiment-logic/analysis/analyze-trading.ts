@@ -11,7 +11,6 @@ export async function analyzeTrading(
   visibleVolume: VisibleVolumeCalculationResult,
   state: State,
   instanceId: string,
-  tradingSignalFindingMethod?: string
 ): Promise<void> {
   const trading: Trading = {
     ...visibleVolume,
@@ -30,7 +29,7 @@ export async function analyzeTrading(
   const guessRatio = await calculateGuessRatio(instanceId);
 
   // Log controls with the guess ratio for future analysis per configuration settings
-  logControl(guessRatio, tradingSignalFindingMethod);
+  logControl(guessRatio, instanceId);
 
   // Log the analysis
   logger.info("Visible Volume:", visibleVolume);
