@@ -1,20 +1,20 @@
-import fs from 'fs';
-import path from 'path';
-import util from 'util';
-import colors from 'colors/safe';
+import fs from "fs";
+import path from "path";
+import util from "util";
+import colors from "colors/safe";
 
 enum LogLevel {
-  INFO = 'INFO',
-  ERROR = 'ERROR',
-  WARNING = 'WARNING',
-  OK = 'OK',
+  INFO = "INFO",
+  ERROR = "ERROR",
+  WARNING = "WARNING",
+  OK = "OK",
 }
 
 class Logger {
   private logDir: string;
 
   constructor() {
-    this.logDir = path.join(process.cwd(), 'log');
+    this.logDir = path.join(process.cwd(), "log");
     this.ensureLogDirectoryExists();
   }
 
@@ -28,11 +28,21 @@ class Logger {
     return util.format(...args);
   }
 
+  private getCurrentDateString(): string {
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, "0");
+    const month = now
+      .toLocaleString("default", { month: "short" })
+      .toLowerCase();
+    const year = now.getFullYear();
+    return `${day}-${month}-${year}`;
+  }
+
   private logToFile(level: LogLevel, args: any[]): void {
     const message = this.formatMessage(args);
     const logEntry = `[${level}] ${message}\n`;
-    const logFile = path.join(this.logDir, 'app.log');
-
+    const dateString = this.getCurrentDateString();
+    const logFile = path.join(this.logDir, `app-${dateString}.log`);
     fs.appendFileSync(logFile, logEntry);
   }
 

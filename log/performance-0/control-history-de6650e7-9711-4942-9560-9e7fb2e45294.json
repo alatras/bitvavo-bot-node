@@ -1,0 +1,20 @@
+{
+  "name": "500115480.000050.00151350180",
+  "guessRatio": 0.49056603773584906,
+  "checks": "overnight",
+  "startDate": "31 July 2024, 09:46",
+  "endDate": "31 July 2024, 09:46",
+  "control": {
+    "EUR_AMOUNT": "500",
+    "TRADE": "false",
+    "CACHE_BOOK_ORDERS": "false",
+    "BUY_PRICE_LIMIT_ORDER_MARGIN": "11",
+    "SELL_PRICE_LIMIT_ORDER_MARGIN": "5",
+    "HOURS_TO_KEEP_REDIS_DATA": "48",
+    "MINIMUM_DIFFERENCE_FOR_ANALYSIS": "0.00005",
+    "MAX_DIFFERENCE_FOR_HOLD": "0.001",
+    "SENTIMENT_THRESHOLD": "51",
+    "ORDER_BOOK_DEPTH": "350",
+    "TRADE_CYCLE_INTERVAL": "180"
+  }
+}

@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import dotenv, { DotenvParseOutput } from "dotenv";
+import { GuessRatioResponse } from "./calculate-guess-ratio";
 
 /**
  * A control object to be logged to a file.
@@ -76,11 +77,10 @@ const getSnapshotFromEnv = (): DotenvParseOutput => {
  * @param guessRatio The ratio of correct guesses
  */
 function logControl(
-  guessRatio: number,
+  guessRatioResponse: GuessRatioResponse,
   instanceId: string
 ): void {
   const env = getSnapshotFromEnv();
-
   // Formulate a unique string name
   let uniqueName = Object.entries(env)
     .filter(([key, value]) => {
@@ -90,12 +90,35 @@ function logControl(
     .map(([, value]) => value)
     .join("");
 
+  // Ensure the log directory exists
+  const logDir = path.join(".", "log", "performance");
+  if (!fs.existsSync(logDir)) {
+    fs.mkdirSync(logDir, { recursive: true });
+  }
+
+  const file = process.env.ENV_FILE_NAME;
+  // Path to the log file
+  const logFilePath = path.join(
+    logDir,
+    `performance-${file}-${instanceId}.json`
+  );
+
+  let existingControlObject: ControlObject | null = null;
+
+  // Check if the file already exists
+  if (fs.existsSync(logFilePath)) {
+    const fileContent = fs.readFileSync(logFilePath, "utf8");
+    existingControlObject = JSON.parse(fileContent) as ControlObject;
+  }
+
   // Create the control object, excluding credential-related variables
   const controlObject: ControlObject = {
     name: uniqueName,
-    guessRatio,
-    checks: 1,
-    startDate: formatDate(new Date()),
+    guessRatio: guessRatioResponse.guessRatio,
+    checks: guessRatioResponse.checks,
+    startDate: existingControlObject
+      ? existingControlObject.startDate
+      : formatDate(new Date()),
     endDate: formatDate(new Date()),
     control: Object.entries(env).reduce((acc, [key, value]) => {
       if (!isCredential(key)) {
@@ -105,43 +128,8 @@ function logControl(
     }, {} as Record<string, string>),
   };
 
-  // Ensure the log directory exists
-  const logDir = path.join(".", "log");
-  if (!fs.existsSync(logDir)) {
-    fs.mkdirSync(logDir, { recursive: true });
-  }
-
-  // Path to the log file
-  const logFilePath = path.join(logDir, `control-history-${instanceId}.json`);
-
-  // Read existing log file or create an empty array if it doesn't exist
-  let existingLog: ControlObject[] = [];
-  if (fs.existsSync(logFilePath)) {
-    const fileContent = fs.readFileSync(logFilePath, "utf-8");
-    existingLog = fileContent ? JSON.parse(fileContent) : [];
-  }
-
-  // Find the existing object with the same name, if any
-  const index = existingLog.findIndex((obj) => obj.name === uniqueName);
-  if (index !== -1) {
-    // If the object exists, increment the checks
-    if (existingLog[index].checks !== undefined) {
-      existingLog[index].checks += 1;
-    } else {
-      // If 'checks' doesn't exist in an already-existing entry, add it starting from 1
-      existingLog[index].checks = 1;
-    }
-    // Update other fields
-    existingLog[index].guessRatio = guessRatio;
-    existingLog[index].control = controlObject.control;
-    existingLog[index].endDate = formatDate(new Date()); // Update the end date
-  } else {
-    // If it's a new control object, add it to the log
-    existingLog.push(controlObject);
-  }
-
-  // Write the updated log back to the file
-  fs.writeFileSync(logFilePath, JSON.stringify(existingLog, null, 2));
+  // Write the control object to the file
+  fs.writeFileSync(logFilePath, JSON.stringify(controlObject, null, 2));
 }
 
 export default logControl;

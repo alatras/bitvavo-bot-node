@@ -1,0 +1,102 @@
+[
+  {
+    "name": "500115480.000050.00156300180",
+    "guessRatio": 0.6181818181818182,
+    "checks": "overnight",
+    "startDate": "31 July 2024, 09:46",
+    "endDate": "31 July 2024, 09:46",
+    "control": {
+      "EUR_AMOUNT": "500",
+      "TRADE": "false",
+      "CACHE_BOOK_ORDERS": "false",
+      "BUY_PRICE_LIMIT_ORDER_MARGIN": "11",
+      "SELL_PRICE_LIMIT_ORDER_MARGIN": "5",
+      "HOURS_TO_KEEP_REDIS_DATA": "48",
+      "MINIMUM_DIFFERENCE_FOR_ANALYSIS": "0.00005",
+      "MAX_DIFFERENCE_FOR_HOLD": "0.001",
+      "SENTIMENT_THRESHOLD": "56",
+      "ORDER_BOOK_DEPTH": "300",
+      "TRADE_CYCLE_INTERVAL": "180"
+    }
+  },
+  {
+    "name": "500115480.000050.00156300180",
+    "guessRatio": 0.59375,
+    "checks": 130,
+    "startDate": "1 August 2024, 20:14",
+    "endDate": "2 August 2024, 09:37",
+    "control": {
+      "EUR_AMOUNT": "500",
+      "TRADE": "false",
+      "CACHE_BOOK_ORDERS": "false",
+      "BUY_PRICE_LIMIT_ORDER_MARGIN": "11",
+      "SELL_PRICE_LIMIT_ORDER_MARGIN": "5",
+      "HOURS_TO_KEEP_REDIS_DATA": "48",
+      "MINIMUM_DIFFERENCE_FOR_ANALYSIS": "0.00005",
+      "MAX_DIFFERENCE_FOR_HOLD": "0.001",
+      "SENTIMENT_THRESHOLD": "56",
+      "ORDER_BOOK_DEPTH": "300",
+      "TRADE_CYCLE_INTERVAL": "180"
+    }
+  },
+  {
+    "name": "500115480.000050.00160300200",
+    "guessRatio": 0.5918367346938775,
+    "checks": "overnight",
+    "startDate": "31 July 2024, 09:48",
+    "endDate": "31 July 2024, 09:48",
+    "control": {
+      "EUR_AMOUNT": "500",
+      "TRADE": "false",
+      "CACHE_BOOK_ORDERS": "false",
+      "BUY_PRICE_LIMIT_ORDER_MARGIN": "11",
+      "SELL_PRICE_LIMIT_ORDER_MARGIN": "5",
+      "HOURS_TO_KEEP_REDIS_DATA": "48",
+      "MINIMUM_DIFFERENCE_FOR_ANALYSIS": "0.00005",
+      "MAX_DIFFERENCE_FOR_HOLD": "0.001",
+      "SENTIMENT_THRESHOLD": "60",
+      "ORDER_BOOK_DEPTH": "300",
+      "TRADE_CYCLE_INTERVAL": "200"
+    }
+  },
+  {
+    "name": "500115480.000050.001594501200",
+    "guessRatio": 0.5789473684210527,
+    "checks": 20,
+    "startDate": "1 August 2024, 20:14",
+    "endDate": "2 August 2024, 09:33",
+    "control": {
+      "EUR_AMOUNT": "500",
+      "TRADE": "false",
+      "CACHE_BOOK_ORDERS": "false",
+      "BUY_PRICE_LIMIT_ORDER_MARGIN": "11",
+      "SELL_PRICE_LIMIT_ORDER_MARGIN": "5",
+      "HOURS_TO_KEEP_REDIS_DATA": "48",
+      "MINIMUM_DIFFERENCE_FOR_ANALYSIS": "0.00005",
+      "MAX_DIFFERENCE_FOR_HOLD": "0.001",
+      "SENTIMENT_THRESHOLD": "59",
+      "ORDER_BOOK_DEPTH": "450",
+      "TRADE_CYCLE_INTERVAL": "1200"
+    }
+  },
+  {
+    "name": "500115480.000050.00157350210",
+    "guessRatio": 0.5765765765765766,
+    "checks": 112,
+    "startDate": "1 August 2024, 20:14",
+    "endDate": "2 August 2024, 09:38",
+    "control": {
+      "EUR_AMOUNT": "500",
+      "TRADE": "false",
+      "CACHE_BOOK_ORDERS": "false",
+      "BUY_PRICE_LIMIT_ORDER_MARGIN": "11",
+      "SELL_PRICE_LIMIT_ORDER_MARGIN": "5",
+      "HOURS_TO_KEEP_REDIS_DATA": "48",
+      "MINIMUM_DIFFERENCE_FOR_ANALYSIS": "0.00005",
+      "MAX_DIFFERENCE_FOR_HOLD": "0.001",
+      "SENTIMENT_THRESHOLD": "57",
+      "ORDER_BOOK_DEPTH": "350",
+      "TRADE_CYCLE_INTERVAL": "210"
+    }
+  }
+]

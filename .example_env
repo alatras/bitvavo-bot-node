@@ -1,6 +1,14 @@
+# NO MORE USED
+# ORDER_BOOK_DEPTH_THRESHOLD: depth threshold amont all book orders for the bot to buy or sell within this range
+# The lower the threshold, the more accurate the signal prediction is.
+# The lower the threshold, the lower the SENTIMENT_THRESHOLD can be to make a trade.
+# This is because on the low range bids and asks are more balanced.
+# Currently, the higher the better the market (always more bids than asks). This may change in the future.
+# ORDER_BOOK_DEPTH_THRESHOLD='0.08'
+
 # API key and secret for the Bitvavo API
-APIKEY="123"
-APISECRET="123"
+APIKEY="eee"
+APISECRET="eee"
 
 # EUR_AMOUNT: Amount of EUR to buy or sell
 EUR_AMOUNT='500'
@@ -31,10 +39,10 @@ MAX_DIFFERENCE_FOR_HOLD='0.001'
 # This is scaled from 0 to 100. 0 means the bot will only buy, 100 means the bot will only sell.
 # The higher the threshold, the more secured the trading is, but the less the bot will trade.
 # The lower the ORDER_BOOK_DEPTH_THRESHOLD is, the lower the SENTIMENT_THRESHOLD should be to make a trade.
-SENTIMENT_THRESHOLD='52'
+SENTIMENT_THRESHOLD='55'
 
 # ORDER_BOOK_DEPTH: The number of orders to consider in the order book
-ORDER_BOOK_DEPTH='30'
+ORDER_BOOK_DEPTH='300'
 
 # TRADE_CYCLE_INTERVAL: The number of seconds to wait before the bot makes another trade cycle
-TRADE_CYCLE_INTERVAL='10'
+TRADE_CYCLE_INTERVAL='150'

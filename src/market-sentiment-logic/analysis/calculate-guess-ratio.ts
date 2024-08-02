@@ -2,16 +2,16 @@ import logger from "../../utils/logger";
 import redis from "../../utils/redis-client";
 import { TradeSignal } from "../types";
 
+export type GuessRatioResponse = {
+  guessRatio: number;
+  checks: number;
+};
+
 /**
  * Calculate the ratio of correct guesses based on the previous and current price change
  * @returns The ratio of correct guesses
- * @examples
- * If the signal is BUY and the price change is positive, it is a correct guess.
- * If the signal is SELL and the price change is negative, it is also a correct guess.
- * If the signal is BUY and the price change is negative, it is an incorrect guess.
- * If the signal is SELL and the price change is positive, it is also an incorrect guess.
  */
-export async function calculateGuessRatio(instanceId: string): Promise<number> {
+export async function calculateGuessRatio(instanceId: string): Promise<GuessRatioResponse> {
   const keys = await redis.keys(`trading:${instanceId}:*`);
   const data = await Promise.all(keys.map((key) => redis.hgetall(key)));
 
@@ -50,5 +50,8 @@ export async function calculateGuessRatio(instanceId: string): Promise<number> {
     }
   }
 
-  return totalGuesses > 0 ? correctGuesses / totalGuesses : 0;
+  return {
+    guessRatio: totalGuesses > 0 ? correctGuesses / totalGuesses : 0,
+    checks: data.length,
+  };
 }

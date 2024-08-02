@@ -7,6 +7,7 @@
     "start": "ts-node src/app.ts",
     "start2": "ts-node drafts/scoreFinder.ts",
     "runner": "ts-node ./runner.ts",
+    "winners": "node ./get-winners.js",
     "saveBook": "ts-node src/market-sentiment-logic/get-book-save-fs.ts",
     "build": "tsc"
   },

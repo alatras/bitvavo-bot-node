@@ -1,0 +1,42 @@
+[ERROR] Error fetching book: API Key must be of length 64.
+[WARNING] Insufficient liquidity in the order book for order size 10
+[WARNING] Insufficient data to calculate VWAP trend.
+[WARNING] Insufficient liquidity in the order book for order size 10
+[WARNING] Insufficient data to calculate VWAP trend.
+[WARNING] Insufficient data to detect significant change
+[WARNING] Insufficient data to detect significant change
+[WARNING] Insufficient liquidity in the order book for order size 10
+[WARNING] Insufficient liquidity in the order book for order size 10
+[WARNING] Insufficient data to calculate VWAP trend.
+[WARNING] Insufficient data to detect significant change
+[WARNING] Insufficient data to detect significant change
+[WARNING] Insufficient liquidity in the order book for order size 10
+[WARNING] Insufficient data to detect reversal
+[WARNING] Insufficient data to detect significant change
+[WARNING] Insufficient liquidity in the order book for order size 10
+[WARNING] Insufficient liquidity in the order book for order size 10
+[WARNING] Insufficient data to calculate VWAP trend.
+[WARNING] Insufficient data to detect significant change
+[WARNING] Insufficient data to detect reversal
+[WARNING] Insufficient liquidity in the order book for order size 10
+[WARNING] Insufficient data to detect significant change
+[WARNING] Insufficient liquidity in the order book for order size 10
+[WARNING] Insufficient data to calculate VWAP trend.
+[WARNING] Insufficient data to detect significant change
+[WARNING] Insufficient data to detect reversal
+[OK] ::::::: Trade Decision Generated: {
+  decision: 'HOLD',
+  reason: 'The combined signal suggests a neutral market condition.',
+  riskLevel: 'High'
+}
+[WARNING] Insufficient liquidity in the order book for order size 10
+[WARNING] Insufficient liquidity in the order book for order size 10
+[WARNING] Insufficient data to calculate VWAP trend.
+[WARNING] Insufficient data to detect significant change
+[WARNING] Insufficient data to detect significant change
+[WARNING] Insufficient data to detect reversal
+[OK] ::::::: Trade Decision Generated: {
+  decision: 'HOLD',
+  reason: 'The combined signal suggests a neutral market condition.',
+  riskLevel: 'High'
+}
