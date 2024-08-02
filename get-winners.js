@@ -49,7 +49,7 @@ async function analyzePerformanceLogs() {
     // Save top five objects to the new file
     await fs.writeFile(path.join(winnersDir, fileName), JSON.stringify(topFive, null, 2));
 
-    console.log(`Analysis complete. Results saved to ${path.join(winnersDir, fileName)}`);
+    console.log(`Winners saved to ${path.join(winnersDir, fileName)}`);
 }
 
 analyzePerformanceLogs().catch(console.error);

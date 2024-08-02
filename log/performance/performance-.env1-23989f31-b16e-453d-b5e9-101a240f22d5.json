@@ -1,9 +1,9 @@
 {
   "name": "500115480.000050.00157350195",
-  "guessRatio": 0.5454545454545454,
-  "checks": 177,
+  "guessRatio": 0.5376344086021505,
+  "checks": 187,
   "startDate": "2 August 2024, 09:42",
-  "endDate": "2 August 2024, 19:35",
+  "endDate": "2 August 2024, 20:08",
   "control": {
     "EUR_AMOUNT": "500",
     "TRADE": "false",
