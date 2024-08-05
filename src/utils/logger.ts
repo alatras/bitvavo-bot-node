@@ -11,11 +11,24 @@ enum LogLevel {
 }
 
 class Logger {
+  private static instance: Logger;
   private logDir: string;
+  private instanceId: string | null = null;
 
-  constructor() {
+  private constructor() {
     this.logDir = path.join(process.cwd(), "log");
     this.ensureLogDirectoryExists();
+  }
+
+  public static getInstance(): Logger {
+    if (!Logger.instance) {
+      Logger.instance = new Logger();
+    }
+    return Logger.instance;
+  }
+
+  public initialize(instanceId: string): void {
+    this.instanceId = instanceId;
   }
 
   private ensureLogDirectoryExists(): void {
@@ -28,21 +41,13 @@ class Logger {
     return util.format(...args);
   }
 
-  private getCurrentDateString(): string {
-    const now = new Date();
-    const day = String(now.getDate()).padStart(2, "0");
-    const month = now
-      .toLocaleString("default", { month: "short" })
-      .toLowerCase();
-    const year = now.getFullYear();
-    return `${day}-${month}-${year}`;
-  }
-
   private logToFile(level: LogLevel, args: any[]): void {
+    if (!this.instanceId) {
+      throw new Error("Logger not initialized with instance ID");
+    }
     const message = this.formatMessage(args);
     const logEntry = `[${level}] ${message}\n`;
-    const dateString = this.getCurrentDateString();
-    const logFile = path.join(this.logDir, `app-${dateString}.log`);
+    const logFile = path.join(this.logDir, `app-${this.instanceId}.log`);
     fs.appendFileSync(logFile, logEntry);
   }
 
@@ -54,17 +59,14 @@ class Logger {
       case LogLevel.INFO:
         console.log(...args);
         break;
-
       case LogLevel.OK:
         coloredMessage = colors.green(message);
         console.log(coloredMessage);
         break;
-
       case LogLevel.ERROR:
         coloredMessage = colors.red(message);
         console.log(`[${level}]`, coloredMessage);
         break;
-
       case LogLevel.WARNING:
         coloredMessage = colors.yellow(message);
         console.log(`[${level}]`, coloredMessage);
@@ -97,4 +99,4 @@ class Logger {
   }
 }
 
-export default new Logger();
+export default Logger.getInstance();

@@ -20,6 +20,9 @@ async function readJsonFile(filePath) {
     return JSON.parse(content);
 }
 
+/**
+ * Analyze performance logs and find the top winners
+*/
 async function analyzePerformanceLogs() {
     const logDir = './log';
     const performanceFolders = await findPerformanceFolders(logDir);
@@ -33,10 +36,10 @@ async function analyzePerformanceLogs() {
         }
     }
 
-    // Sort objects by guessRatio in descending order and get top 5
-    const topFive = allObjects
+    // Sort objects by guessRatio in descending order and get top few
+    const topWinners = allObjects
         .sort((a, b) => b.guessRatio - a.guessRatio)
-        .slice(0, 5);
+        .slice(0, 8);
 
     // Create winners folder if it doesn't exist
     const winnersDir = path.join(logDir, 'winners');
@@ -47,7 +50,7 @@ async function analyzePerformanceLogs() {
     const fileName = `winners-${now.getDate().toString().padStart(2, '0')}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getFullYear()}:${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}.json`;
 
     // Save top five objects to the new file
-    await fs.writeFile(path.join(winnersDir, fileName), JSON.stringify(topFive, null, 2));
+    await fs.writeFile(path.join(winnersDir, fileName), JSON.stringify(topWinners, null, 2));
 
     console.log(`Winners saved to ${path.join(winnersDir, fileName)}`);
 }

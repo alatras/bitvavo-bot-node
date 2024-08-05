@@ -1,9 +1,9 @@
 {
-  "name": "500115480.000050.001594001500",
-  "guessRatio": 0.4583333333333333,
-  "checks": 25,
-  "startDate": "2 August 2024, 09:42",
-  "endDate": "2 August 2024, 20:03",
+  "name": "500115480.000050.00160400720",
+  "guessRatio": 0.625,
+  "checks": 121,
+  "startDate": "3 August 2024, 11:03",
+  "endDate": "4 August 2024, 11:12",
   "control": {
     "EUR_AMOUNT": "500",
     "TRADE": "false",
@@ -13,8 +13,8 @@
     "HOURS_TO_KEEP_REDIS_DATA": "48",
     "MINIMUM_DIFFERENCE_FOR_ANALYSIS": "0.00005",
     "MAX_DIFFERENCE_FOR_HOLD": "0.001",
-    "SENTIMENT_THRESHOLD": "59",
+    "SENTIMENT_THRESHOLD": "60",
     "ORDER_BOOK_DEPTH": "400",
-    "TRADE_CYCLE_INTERVAL": "1500"
+    "TRADE_CYCLE_INTERVAL": "720"
   }
 }
