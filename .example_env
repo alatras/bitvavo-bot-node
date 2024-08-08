@@ -17,7 +17,7 @@ EUR_AMOUNT='500'
 TRADE='false'
 
 # CACHE_BOOK_ORDERS: 'true': the bot to cache the book orders. 'false': the bot to not cache the book orders.
-CACHE_BOOK_ORDERS='false'
+CACHE_BOOK_ORDERS='true'
 
 # BUY_PRICE_LIMIT_ORDER_MARGIN: The reduction in bid price bellow mid-price for the bot to buy
 BUY_PRICE_LIMIT_ORDER_MARGIN='11'
@@ -39,10 +39,10 @@ MAX_DIFFERENCE_FOR_HOLD='0.001'
 # This is scaled from 0 to 100. 0 means the bot will only buy, 100 means the bot will only sell.
 # The higher the threshold, the more secured the trading is, but the less the bot will trade.
 # The lower the ORDER_BOOK_DEPTH_THRESHOLD is, the lower the SENTIMENT_THRESHOLD should be to make a trade.
-SENTIMENT_THRESHOLD='55'
+SENTIMENT_THRESHOLD='56'
 
 # ORDER_BOOK_DEPTH: The number of orders to consider in the order book
-ORDER_BOOK_DEPTH='300'
+ORDER_BOOK_DEPTH='750'
 
 # TRADE_CYCLE_INTERVAL: The number of seconds to wait before the bot makes another trade cycle
-TRADE_CYCLE_INTERVAL='150'
+TRADE_CYCLE_INTERVAL='2700'

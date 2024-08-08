@@ -16,7 +16,7 @@ class Logger {
   private instanceId: string | null = null;
 
   private constructor() {
-    this.logDir = path.join(process.cwd(), "log");
+    this.logDir = path.join(process.cwd(), "log", "logs");
     this.ensureLogDirectoryExists();
   }
 
